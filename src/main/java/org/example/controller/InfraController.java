@@ -2,6 +2,7 @@ package org.example.controller;
 
 import org.example.domain.Infra;
 import org.example.view.SearchResultInputView;
+import org.json.JSONArray;
 
 import java.util.List;
 
@@ -11,8 +12,13 @@ public class InfraController {
         return radius;
     }
     public String getCategoryCode(SearchResultInputView searchResultInputView) {
-        String categoryCode = searchResultInputView.getCategoryCode();
+        String categoryCode = searchResultInputView.inputCategoryCode();
         return categoryCode;
+    }
+
+    public JSONArray getInfraList(Infra infra,List userLocationList, String code, int radius) {
+        JSONArray infraInfo = infra.searchInfraInformationNearByUser(userLocationList, code, radius);
+        return infraInfo;
     }
 
 
