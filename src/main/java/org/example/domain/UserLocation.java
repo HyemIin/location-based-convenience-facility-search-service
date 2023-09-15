@@ -12,7 +12,6 @@ public class UserLocation {
 
     private static final String KEYWORD_URL = "https://dapi.kakao.com/v2/local/search/keyword";
 
-    // KakaoApi.getApiKey()이 static이니깐 여기서 static을 붙여줄 필요가 있는지??
     private static String API_KEY = KakaoApi.getApiKey();
     private static HttpUrlConnection httpUrlConnection = new HttpUrlConnection();
     public ArrayList<ArrayList> searchUserLocationByKeyword(String keyword) {
