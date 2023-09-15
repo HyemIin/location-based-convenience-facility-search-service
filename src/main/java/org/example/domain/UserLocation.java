@@ -24,7 +24,6 @@ public class UserLocation {
             JSONObject userLocationJson = new JSONObject(userLocationString);
             JSONArray userLocationList = (JSONArray) userLocationJson.get("documents");
 
-            // Object타입밖에 안돼??
             for (Object o : userLocationList) {
                 JSONObject placeCandidate = (JSONObject) o;
                 ArrayList placeCandidateInfoList = new ArrayList();
