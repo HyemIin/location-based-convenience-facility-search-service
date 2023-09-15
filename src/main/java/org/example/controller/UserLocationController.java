@@ -8,22 +8,19 @@ import java.util.List;
 
 public class UserLocationController {
 
-
-    // 사용자 위치 정보 입력 후 사용자 위치 후보 가져오기
-
     public String getUserLocationKeyword(UserLocationInputView userLocationInputView) {
-        String userLocationKeyword = userLocationInputView.inputUserLocationKeyword();
-        return userLocationKeyword;
+        String userLocationInputKeyword = userLocationInputView.inputUserLocationKeyword();
+        return userLocationInputKeyword;
     }
 
     public List getUserLocationCandidateList(UserLocationOutputView userLocationOutputView,UserLocation userLocation,String userLocationKeyword) {
         List userLocationCandidateList = userLocation.searchUserLocationByKeyword(userLocationKeyword);
-        userLocationOutputView.showUserLocationCandidate(userLocationCandidateList);
+        userLocationOutputView.printUserLocationCandidate(userLocationCandidateList);
         return userLocationCandidateList;
     }
 
     public List getUserLocation(UserLocationInputView userLocationInputView,List userLocationCandidateList) {
-        List userLocationList = userLocationInputView.getUserLocationName(userLocationCandidateList);
+        List userLocationList = userLocationInputView.inputUserLocationName(userLocationCandidateList);
         System.out.println("선택하신 위치는 "+userLocationList.get(0) + " 입니다.");
         return userLocationList;
     }
