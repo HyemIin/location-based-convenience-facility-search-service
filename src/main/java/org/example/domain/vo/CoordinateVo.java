@@ -1,17 +1,19 @@
 package org.example.domain.vo;
 
-import lombok.AllArgsConstructor;
 
-@AllArgsConstructor
 public class CoordinateVo {
-    private String x;
-    private String y;
+    private double x;
+    private double y;
 
-    public boolean isValidated(String x,String y) {
-        double xPoint = Double.parseDouble(x);
-        double yPoint = Double.parseDouble(y);
-        if (xPoint < 0 || yPoint < 0) {
-            throw new IllegalArgumentException("좌표는 음수일 수 없습니다");
+    public CoordinateVo(double x, double y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    public boolean isValidatedPositiveNumber(double x, double y) {
+
+        if (x < 0 || y < 0) {
+            return false;
         } else {
             return true;
         }
