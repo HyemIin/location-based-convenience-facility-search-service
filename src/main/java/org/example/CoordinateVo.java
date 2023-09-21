@@ -1,4 +1,4 @@
-package org.example.domain.vo;
+package org.example;
 
 
 public class CoordinateVo {
