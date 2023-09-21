@@ -1,4 +1,4 @@
-package org.example.domain;
+package org.example;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -13,7 +13,7 @@ public class HttpUrlConnection {
     public String requestApiConnection(String url) throws IOException {
         HttpClient httpClient = HttpClientBuilder.create().build();
         HttpGet httpGet = new HttpGet(url);
-        httpGet.addHeader("Authorization", "KakaoAK " + KakaoApi.API_KEY);
+        httpGet.addHeader("Authorization", "KakaoAK " + new KakaoApi().getApiKey());
         HttpResponse httpResponse = httpClient.execute(httpGet);
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(httpResponse.getEntity().getContent()));
         String apiInfo = bufferedReader.readLine();
