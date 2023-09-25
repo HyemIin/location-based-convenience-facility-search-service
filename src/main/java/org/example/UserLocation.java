@@ -1,4 +1,4 @@
-package org.example.domain;
+package org.example;
 
 import com.google.gson.*;
 import org.json.JSONArray;
@@ -6,17 +6,15 @@ import org.json.JSONObject;
 
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 
 public class UserLocation {
 
     private static final String KEYWORD_URL = "https://dapi.kakao.com/v2/local/search/keyword";
-
-    private static String API_KEY = KakaoApi.getApiKey();
     private static HttpUrlConnection httpUrlConnection = new HttpUrlConnection();
-    public ArrayList<ArrayList> searchUserLocationByKeyword(String keyword) {
-        Gson gson = new GsonBuilder().create();
-        ArrayList<ArrayList> userLocationCandidateList = new ArrayList<ArrayList>();
+    public ArrayList<HashMap> searchUserLocationByKeyword(String keyword) {
+        ArrayList<HashMap> userLocationCandidateList = new ArrayList<>();
         try {
             String url = KEYWORD_URL + "?query=" + URLEncoder.encode(keyword);
             String userLocationString = httpUrlConnection.requestApiConnection(url);
@@ -25,11 +23,11 @@ public class UserLocation {
 
             for (Object o : userLocationList) {
                 JSONObject placeCandidate = (JSONObject) o;
-                ArrayList placeCandidateInfoList = new ArrayList();
-                placeCandidateInfoList.add(placeCandidate.get("place_name"));
-                placeCandidateInfoList.add(placeCandidate.get("x"));
-                placeCandidateInfoList.add(placeCandidate.get("y"));
-                userLocationCandidateList.add(placeCandidateInfoList);
+                HashMap<String,String> placeCandidateInfoMap = new HashMap();
+                placeCandidateInfoMap.put("place_name", (String) placeCandidate.get("place_name"));
+                placeCandidateInfoMap.put("x", (String) placeCandidate.get("x"));
+                placeCandidateInfoMap.put("y", (String) placeCandidate.get("y"));
+                userLocationCandidateList.add(placeCandidateInfoMap);
             }
 
         } catch (Exception e) {

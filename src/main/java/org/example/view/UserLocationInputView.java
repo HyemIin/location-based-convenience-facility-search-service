@@ -1,10 +1,15 @@
 package org.example.view;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
 public class UserLocationInputView {
-    private static Scanner scanner = new Scanner(System.in);
+    private Scanner scanner;
+
+    public UserLocationInputView(Scanner scanner) {
+        this.scanner = scanner;
+    }
 
     public static int num;
 
@@ -13,9 +18,9 @@ public class UserLocationInputView {
         String userLocationKeyword = scanner.nextLine();
         return userLocationKeyword;
     }
-    public List inputUserLocationName(List userLocationCandidateList) {
+    public HashMap inputUserLocationName(List userLocationCandidateList) {
         num = scanner.nextInt();
-        List userChoiceLocationInfo = (List) userLocationCandidateList.get(num-1);
+        HashMap userChoiceLocationInfo = (HashMap)userLocationCandidateList.get(num-1);
         return userChoiceLocationInfo;
     }
 
